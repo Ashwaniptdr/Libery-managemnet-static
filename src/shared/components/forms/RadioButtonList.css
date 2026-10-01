@@ -1,0 +1,170 @@
+.radio-button-container {
+  width: 100%;
+  margin-bottom: 0.85rem;
+}
+
+.radio-container-label {
+  margin-bottom: 0.55rem;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+
+.radio-error-text {
+  font-size: 0.75rem;
+  color: var(--danger-color);
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ==========================================================================
+   SEGMENTED PILL VARIANT (Matching User Screenshot 1)
+   ========================================================================== */
+.radio-pill-group {
+  display: inline-flex;
+  background: #f8fafc;
+  padding: 0.35rem;
+  border-radius: 12px;
+  gap: 0.45rem;
+  border: 1.5px solid #e2e8f0;
+  flex-wrap: wrap;
+  align-items: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.dark-theme .radio-pill-group {
+  background: #201710;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.radio-pill-group.vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.radio-pill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary, #334155);
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .radio-pill-item {
+  color: #cbd5e1;
+  background: #261b11;
+  border-color: #442e1b;
+}
+
+.radio-pill-item:hover {
+  color: var(--theme-primary, #ea580c);
+  background: var(--theme-subtle-bg, #fff7ed);
+  border-color: var(--theme-primary, #ea580c);
+}
+
+.dark-theme .radio-pill-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* SELECTED PILL ITEM - Takes the Active Theme Pill Background */
+.radio-pill-item.selected {
+  background: linear-gradient(135deg, var(--theme-pill-from, #f97316), var(--theme-pill-to, #ea580c)) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 3px 12px var(--theme-pill-shadow, rgba(234, 88, 12, 0.35)) !important;
+}
+
+.radio-pill-item.selected .radio-pill-icon {
+  color: #ffffff !important;
+}
+
+.radio-pill-item.selected:hover {
+  background: linear-gradient(135deg, var(--theme-pill-from, #f97316), var(--theme-pill-to, #ea580c)) !important;
+  color: #ffffff !important;
+}
+
+.radio-pill-native {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Radio circle matching screenshot */
+.radio-pill-circle {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2px solid #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.radio-pill-item.selected .radio-pill-circle {
+  border-color: #ffffff;
+  background: #ffffff;
+}
+
+.radio-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--theme-primary, #1e3a8a);
+  display: block;
+}
+
+.radio-pill-icon {
+  font-size: 1.05rem;
+  color: var(--theme-primary, #ea580c);
+  transition: color 0.2s ease;
+}
+
+.radio-pill-label {
+  line-height: 1.2;
+}
+
+/* Default Radio Button overrides */
+.radio-button-container .p-radiobutton .p-radiobutton-box {
+  border: 2px solid var(--primary-color);
+  width: 18px;
+  height: 18px;
+  transition: all 0.2s;
+}
+
+.radio-button-container .p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+
+.radio-option-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.radio-option-item label {
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  user-select: none;
+}

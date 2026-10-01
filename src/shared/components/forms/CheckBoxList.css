@@ -1,0 +1,112 @@
+.checkbox-scroll-container {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.checkbox-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.checkbox-scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.checkbox-scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.checkbox-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.no-label-checkbox-list .input-block {
+  margin-bottom: 0;
+  display: inline-block;
+  width: auto;
+}
+
+.no-label-checkbox-list .checkbox-scroll-container {
+  max-height: none;
+  overflow: visible;
+  display: inline-block;
+}
+
+.no-label-checkbox-list .checkbox-scroll-container > div {
+  gap: 0 !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+.no-label-checkbox-list label {
+  display: none !important;
+}
+
+.no-label-checkbox-list .flex.align-items-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkbox-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.checkbox-table th,
+.checkbox-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--surface-border);
+  text-align: left;
+}
+
+.checkbox-table th {
+  font-weight: 600;
+  background-color: var(--surface-50);
+}
+
+.checkbox-table tr:hover {
+  background-color: var(--surface-100);
+}
+
+.checkbox-grid-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* treat table as grid */
+.checkbox-grid-table tbody {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* desktop */
+  gap: 0.75rem;
+}
+
+/* each cell behaves like card */
+.checkbox-grid-table tr {
+  display: contents;
+}
+
+.checkbox-grid-table td {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 6px;
+  background: none;
+}
+
+.checkbox-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .checkbox-grid-table tbody {
+    grid-template-columns: 1fr; /* one per row */
+  }
+}
+
+.checkbox-alignment {
+  margin-top: 36px;
+}

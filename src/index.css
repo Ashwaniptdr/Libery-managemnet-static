@@ -1,0 +1,742 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --transparent: transparent;
+
+  /* Status Colors */
+  --success-color: #2e5d3c;
+  --success-bg: #e8f5ec;
+  --danger-color: #b91c1c;
+  --danger-bg: #fee2e2;
+  --warning-color: #b45309;
+  --warning-bg: #fef3c7;
+  --info-color: #1d4ed8;
+  --info-bg: #dbeafe;
+  --ripple-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   THEME 0: TDP WARM AMBER (Portal Government Theme - Default)
+   ========================================================================== */
+:root,
+body[data-theme="amber"] {
+  --primary-color: #ea580c;
+  --primary-hover: #c2410c;
+  --secondary-color: #f97316;
+  --secondary-hover: #ea580c;
+  --accent-green: #16a34a;
+  --accent-green-light: #f0fdf4;
+  --accent-gold-light: #fff7ed;
+
+  --body-bg: #fffbf7;
+  --main-content-bg: #fff7ed;
+  --card-bg: #ffffff;
+  --card-border: #fed7aa;
+  --card-shadow: 0 4px 16px rgba(234, 88, 12, 0.06);
+
+  --header-bg: #ffffff;
+  --header-gradient: linear-gradient(135deg, #ffffff 0%, #fffbf7 100%);
+  --navbar-bg: #ffffff;
+  --navbar-border: #ede8df;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+
+  --theme-primary: #ea580c;
+  --theme-secondary: #f97316;
+  --theme-pill-from: #f97316;
+  --theme-pill-to: #ea580c;
+  --theme-pill-shadow: rgba(234, 88, 12, 0.32);
+  --theme-subtle-bg: #fff7ed;
+  --theme-subtle-border: #fed7aa;
+  --theme-text-accent: #c2410c;
+  --theme-watermark-1: #fed7aa;
+  --theme-watermark-2: #fdba74;
+
+  --border-color: #ede8df;
+  --placeholder-gray: #a69b8d;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  --scrollbar-track-bg: #f0e6d8;
+  --scrollbar-thumb-bg: #b59f84;
+}
+
+body[data-theme="amber"].dark-theme {
+  --body-bg: #15100a;
+  --main-content-bg: #1c140d;
+  --card-bg: #261b11;
+  --card-border: #442e1b;
+  --text-primary: #f8fafc;
+  --text-secondary: #fdba74;
+  --header-bg: #17120c;
+  --sidebar-bg: #17120c;
+  --sidebar-text: #f1ede7;
+
+  --theme-primary: #f97316;
+  --theme-secondary: #fb923c;
+  --theme-pill-from: #f97316;
+  --theme-pill-to: #ea580c;
+  --theme-pill-shadow: rgba(249, 115, 22, 0.45);
+  --theme-subtle-bg: #2c1a0e;
+  --theme-subtle-border: #5a3417;
+  --theme-text-accent: #fed7aa;
+  --theme-watermark-1: #4a2810;
+  --theme-watermark-2: #3a1e0b;
+}
+
+/* ==========================================================================
+   THEME 1: CLASSIC MAHOGANY (Heritage Library)
+   ========================================================================== */
+body[data-theme="classic"] {
+  --primary-color: #4a3728;
+  --primary-hover: #38291e;
+  --secondary-color: #8b6914;
+  --secondary-hover: #75570e;
+  --accent-green: #2e5d3c;
+  --accent-green-light: #e8f5ec;
+  --accent-gold-light: #fef7e7;
+
+  --body-bg: #fdfbf7;
+  --main-content-bg: #f9f5ed;
+  --card-bg: #ffffff;
+  --card-border: #e8dccb;
+  --card-shadow: 0 4px 16px rgba(139, 105, 20, 0.06);
+
+  --header-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+
+  --theme-primary: #8b6914;
+  --theme-secondary: #a37c19;
+  --theme-pill-from: #a37c19;
+  --theme-pill-to: #8b6914;
+  --theme-pill-shadow: rgba(139, 105, 20, 0.32);
+  --theme-subtle-bg: #fdfaf3;
+  --theme-subtle-border: #f0e2c8;
+  --theme-text-accent: #75570e;
+  --theme-watermark-1: #f3e6cf;
+  --theme-watermark-2: #e2cc9d;
+
+  --border-color: #e2d5c3;
+  --text-primary: #2b2118;
+  --text-secondary: #635345;
+  --text-muted: #8c7d6f;
+}
+
+body[data-theme="classic"].dark-theme {
+  --body-bg: #19120b;
+  --main-content-bg: #211910;
+  --card-bg: #2b2015;
+  --card-border: #423324;
+  --text-primary: #f5eedf;
+  --text-secondary: #c9baa8;
+  --sidebar-bg: #17120c;
+  --sidebar-text: #f5eedf;
+
+  --theme-primary: #b88d22;
+  --theme-secondary: #d4a52c;
+  --theme-pill-from: #d4a52c;
+  --theme-pill-to: #8b6914;
+  --theme-pill-shadow: rgba(184, 141, 34, 0.45);
+  --theme-subtle-bg: #2e2212;
+  --theme-subtle-border: #523e1d;
+  --theme-text-accent: #ffd89b;
+  --theme-watermark-1: #453215;
+  --theme-watermark-2: #36260f;
+}
+
+/* ==========================================================================
+   THEME 2: ROYAL EMERALD (Forest & Ecology Governance)
+   ========================================================================== */
+body[data-theme="emerald"] {
+  --primary-color: #1b4332;
+  --primary-hover: #143326;
+  --secondary-color: #2d6a4f;
+  --secondary-hover: #214e3a;
+  --accent-green: #40916c;
+  --accent-green-light: #e8f5ec;
+  --accent-gold-light: #f4f9f4;
+
+  --body-bg: #f4fbf7;
+  --main-content-bg: #edf8f2;
+  --card-bg: #ffffff;
+  --card-border: #bbf7d0;
+  --card-shadow: 0 4px 16px rgba(27, 67, 50, 0.06);
+
+  --header-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+
+  --theme-primary: #1b4332;
+  --theme-secondary: #2d6a4f;
+  --theme-pill-from: #2d6a4f;
+  --theme-pill-to: #1b4332;
+  --theme-pill-shadow: rgba(27, 67, 50, 0.32);
+  --theme-subtle-bg: #f0fdf4;
+  --theme-subtle-border: #bbf7d0;
+  --theme-text-accent: #166534;
+  --theme-watermark-1: #bbf7d0;
+  --theme-watermark-2: #86efac;
+
+  --border-color: #cde2d5;
+  --text-primary: #0e231a;
+  --text-secondary: #244a37;
+  --text-muted: #4e715e;
+}
+
+body[data-theme="emerald"].dark-theme {
+  --body-bg: #0b1a13;
+  --main-content-bg: #10241b;
+  --card-bg: #152d22;
+  --card-border: #234837;
+  --text-primary: #edf7f1;
+  --text-secondary: #a9cdb8;
+  --sidebar-bg: #0d1e16;
+  --sidebar-text: #edf7f1;
+
+  --theme-primary: #40916c;
+  --theme-secondary: #52b788;
+  --theme-pill-from: #52b788;
+  --theme-pill-to: #2d6a4f;
+  --theme-pill-shadow: rgba(64, 145, 108, 0.45);
+  --theme-subtle-bg: #163627;
+  --theme-subtle-border: #285e43;
+  --theme-text-accent: #a7f3d0;
+  --theme-watermark-1: #1a4230;
+  --theme-watermark-2: #123023;
+}
+
+/* ==========================================================================
+   THEME 3: POLICY SAPPHIRE (State Policy & Public Administration)
+   ========================================================================== */
+body[data-theme="sapphire"] {
+  --primary-color: #1e3a8a;
+  --primary-hover: #172554;
+  --secondary-color: #2563eb;
+  --secondary-hover: #1d4ed8;
+  --accent-green: #0284c7;
+  --accent-green-light: #e0f2fe;
+  --accent-gold-light: #eff6ff;
+
+  --body-bg: #f4f8fd;
+  --main-content-bg: #edf4fc;
+  --card-bg: #ffffff;
+  --card-border: #bfdbfe;
+  --card-shadow: 0 4px 16px rgba(30, 58, 138, 0.06);
+
+  --header-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+
+  --theme-primary: #1e3a8a;
+  --theme-secondary: #2563eb;
+  --theme-pill-from: #3b82f6;
+  --theme-pill-to: #1e3a8a;
+  --theme-pill-shadow: rgba(30, 58, 138, 0.32);
+  --theme-subtle-bg: #eff6ff;
+  --theme-subtle-border: #bfdbfe;
+  --theme-text-accent: #1d4ed8;
+  --theme-watermark-1: #bfdbfe;
+  --theme-watermark-2: #93c5fd;
+
+  --border-color: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+}
+
+body[data-theme="sapphire"].dark-theme {
+  --body-bg: #0b1329;
+  --main-content-bg: #101c3d;
+  --card-bg: #172554;
+  --card-border: #1e3a8a;
+  --text-primary: #f8fafc;
+  --text-secondary: #93c5fd;
+  --sidebar-bg: #0e172e;
+  --sidebar-text: #f8fafc;
+
+  --theme-primary: #38bdf8;
+  --theme-secondary: #60a5fa;
+  --theme-pill-from: #60a5fa;
+  --theme-pill-to: #2563eb;
+  --theme-pill-shadow: rgba(56, 189, 248, 0.45);
+  --theme-subtle-bg: #18284d;
+  --theme-subtle-border: #29437a;
+  --theme-text-accent: #bfdbfe;
+  --theme-watermark-1: #1e3363;
+  --theme-watermark-2: #142347;
+}
+
+/* ==========================================================================
+   THEME 4: IMPERIAL BURGUNDY (Archival & Research Monographs)
+   ========================================================================== */
+body[data-theme="burgundy"] {
+  --primary-color: #581845;
+  --primary-hover: #421034;
+  --secondary-color: #900c3f;
+  --secondary-hover: #730a32;
+  --accent-green: #c70039;
+  --accent-green-light: #fde8ef;
+  --accent-gold-light: #fdf2f4;
+
+  --body-bg: #fdf5f9;
+  --main-content-bg: #faeef4;
+  --card-bg: #ffffff;
+  --card-border: #fbcfe8;
+  --card-shadow: 0 4px 16px rgba(88, 24, 69, 0.06);
+
+  --header-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+
+  --theme-primary: #581845;
+  --theme-secondary: #900c3f;
+  --theme-pill-from: #900c3f;
+  --theme-pill-to: #581845;
+  --theme-pill-shadow: rgba(88, 24, 69, 0.32);
+  --theme-subtle-bg: #fdf2f8;
+  --theme-subtle-border: #fbcfe8;
+  --theme-text-accent: #9d174d;
+  --theme-watermark-1: #fbcfe8;
+  --theme-watermark-2: #f472b6;
+
+  --border-color: #ebd0dc;
+  --text-primary: #2a0820;
+  --text-secondary: #5c244b;
+  --text-muted: #824f72;
+}
+
+body[data-theme="burgundy"].dark-theme {
+  --body-bg: #1a0614;
+  --main-content-bg: #240a1d;
+  --card-bg: #330f29;
+  --card-border: #4f173f;
+  --text-primary: #fdf2f7;
+  --text-secondary: #f472b6;
+  --sidebar-bg: #1c0917;
+  --sidebar-text: #fdf2f7;
+
+  --theme-primary: #f472b6;
+  --theme-secondary: #fb7185;
+  --theme-pill-from: #fb7185;
+  --theme-pill-to: #900c3f;
+  --theme-pill-shadow: rgba(244, 114, 182, 0.45);
+  --theme-subtle-bg: #3d1431;
+  --theme-subtle-border: #632251;
+  --theme-text-accent: #fbcfe8;
+  --theme-watermark-1: #4a193c;
+  --theme-watermark-2: #301027;
+}
+
+/* ==========================================================================
+   THEME 5: DIGITAL SLATE TEAL (Modern Knowledge & Innovation)
+   ========================================================================== */
+body[data-theme="teal"] {
+  --primary-color: #0f4c5c;
+  --primary-hover: #09343f;
+  --secondary-color: #0d9488;
+  --secondary-hover: #0f766e;
+  --accent-green: #14b8a6;
+  --accent-green-light: #ccfbf1;
+  --accent-gold-light: #f0fdfa;
+
+  --body-bg: #f2fbf9;
+  --main-content-bg: #e8f7f5;
+  --card-bg: #ffffff;
+  --card-border: #99f6e4;
+  --card-shadow: 0 4px 16px rgba(15, 76, 92, 0.06);
+
+  --header-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+
+  --theme-primary: #0f4c5c;
+  --theme-secondary: #0d9488;
+  --theme-pill-from: #0d9488;
+  --theme-pill-to: #0f4c5c;
+  --theme-pill-shadow: rgba(15, 76, 92, 0.32);
+  --theme-subtle-bg: #f0fdfa;
+  --theme-subtle-border: #99f6e4;
+  --theme-text-accent: #0f766e;
+  --theme-watermark-1: #99f6e4;
+  --theme-watermark-2: #5eead4;
+
+  --border-color: #c3eae3;
+  --text-primary: #082128;
+  --text-secondary: #174853;
+  --text-muted: #3d6a74;
+}
+
+body[data-theme="teal"].dark-theme {
+  --body-bg: #091a1e;
+  --main-content-bg: #0d252b;
+  --card-bg: #14353d;
+  --card-border: #1f4e5a;
+  --text-primary: #e6faf7;
+  --text-secondary: #5eead4;
+  --sidebar-bg: #0d2227;
+  --sidebar-text: #e6faf7;
+
+  --theme-primary: #14b8a6;
+  --theme-secondary: #2dd4bf;
+  --theme-pill-from: #2dd4bf;
+  --theme-pill-to: #0d9488;
+  --theme-pill-shadow: rgba(20, 184, 166, 0.45);
+  --theme-subtle-bg: #133941;
+  --theme-subtle-border: #225662;
+  --theme-text-accent: #99f6e4;
+  --theme-watermark-1: #1a4751;
+  --theme-watermark-2: #113239;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  background-color: var(--body-bg);
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+header,
+.sidebar,
+.navbar,
+.card-container,
+.main-content {
+  transition: background 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* App Layout Structure */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--main-content-bg);
+}
+
+.app-layout.sidebar-open {
+  flex-direction: row;
+}
+
+.app-layout.sidebar-open .main-layout {
+  margin-left: 296px;
+  flex: 1;
+  width: calc(100vw - 296px);
+}
+
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  background-color: transparent;
+}
+
+.dark-theme .main-content {
+  background-color: transparent;
+}
+
+/* Inline List Filters matching reference screenshot */
+.list-inline-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.15rem;
+}
+
+.list-inline-filters .input-block {
+  margin-bottom: 0 !important;
+}
+
+.list-inline-filters .p-dropdown {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+
+  .form-grid,
+  .form-grid-3,
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .main-content {
+    padding: 0.75rem;
+  }
+}
+
+/* PrimeReact Theme Adaptations */
+.p-component {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.p-inputtext {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: #ffffff;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.p-inputtext:enabled:hover {
+  border-color: var(--secondary-color);
+}
+
+.p-inputtext:enabled:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 55, 40, 0.15);
+}
+
+.p-dropdown {
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.p-dropdown:not(.p-disabled):hover {
+  border-color: #94a3b8;
+  background-color: #fcfdfe;
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  border-color: var(--theme-primary, #ea580c);
+  box-shadow: 0 0 0 3.5px var(--theme-pill-shadow, rgba(234, 88, 12, 0.18));
+  background-color: #ffffff;
+}
+
+.p-dropdown .p-dropdown-label,
+.p-dropdown .p-dropdown-label.p-inputtext {
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1e293b;
+  line-height: 1.4;
+  border: none !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.p-dropdown .p-dropdown-trigger {
+  width: 2.25rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  border: none !important;
+  border-left: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.p-dropdown .p-dropdown-trigger::before,
+.p-dropdown .p-dropdown-trigger::after {
+  display: none !important;
+}
+
+.p-dropdown:not(.p-disabled):hover .p-dropdown-trigger {
+  color: var(--theme-primary, #ea580c);
+}
+
+.p-dropdown-panel {
+  border-radius: 12px;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 0.4rem;
+  overflow: hidden;
+}
+
+.p-dropdown-panel .p-dropdown-items {
+  padding: 0;
+  margin: 0;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 0.65rem 1rem;
+  font-size: 0.88rem;
+  color: #334155;
+  border-radius: 8px;
+  margin: 2px 0;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  background-color: var(--theme-subtle-bg, #ffedd5);
+  color: var(--theme-primary, #ea580c);
+  font-weight: 600;
+}
+
+/* PrimeReact Button Adaptations */
+.p-button {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Badges & Tags */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.issued {
+  background-color: var(--info-bg);
+  color: var(--info-color);
+}
+
+.status-badge.returned {
+  background-color: var(--success-bg);
+  color: var(--success-color);
+}
+
+.status-badge.overdue {
+  background-color: var(--danger-bg);
+  color: var(--danger-color);
+}
+
+.status-badge.reissued {
+  background-color: var(--warning-bg);
+  color: var(--warning-color);
+}
+
+.status-badge.verified {
+  background-color: var(--success-bg);
+  color: var(--success-color);
+}
+
+.status-badge.missing {
+  background-color: var(--danger-bg);
+  color: var(--danger-color);
+}
+
+/* Card utility styles */
+.library-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+}
+
+/* Dark Theme Overrides for PrimeReact controls */
+.dark-theme .p-inputtext,
+.dark-theme .p-dropdown {
+  background: var(--dark-input-bg);
+  color: var(--dark-text);
+  border-color: var(--dark-input-border);
+}
+
+.dark-theme .p-dropdown .p-dropdown-label {
+  color: var(--dark-text);
+}
+
+.dark-theme .p-dropdown-panel {
+  background: var(--dark-card-bg);
+  border-color: var(--dark-border);
+}
+
+.dark-theme .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  color: var(--dark-text-secondary);
+}
+
+.dark-theme .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
+  background: var(--sidebar-hover);
+  color: var(--dark-text);
+}
+
+.dark-theme .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  background: var(--sidebar-active);
+  color: #ffffff;
+}

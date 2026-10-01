@@ -1,0 +1,121 @@
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+.main-page {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ============================================================
+   STICKY PAGE HEADER — does NOT scroll away, stays visible below header
+   ============================================================ */
+.page-sticky-header {
+  position: sticky;
+  top: 84px;
+  z-index: 950;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.95rem 1.6rem;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.dark-theme .page-sticky-header {
+  background: rgba(26, 18, 12, 0.94);
+  border-color: #3b2819;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* ============================================================
+   PAGE HEADER BLOCK (title + subtitle)
+   ============================================================ */
+.page-header-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.page-title {
+  font-size: 1.35rem;
+  text-align: left;
+  color: #1e293b;
+  margin: 0 0 0.15rem 0;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  transition: color 0.25s ease;
+}
+
+.dark-theme .page-title {
+  color: #ffffff;
+}
+
+.page-subtitle {
+  font-size: 0.8rem;
+  text-align: left;
+  color: #64748b;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 400;
+  transition: all 0.25s ease;
+  line-height: 1.4;
+}
+
+.dark-theme .page-subtitle {
+  color: #94a3b8;
+}
+
+.page-subtitle.clickable {
+  cursor: pointer;
+  color: var(--theme-primary, #ea580c);
+}
+
+.page-subtitle.clickable:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   HEADER ACTIONS (button area right of title)
+   ============================================================ */
+.page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PAGE BODY — scrollable content below sticky header
+   ============================================================ */
+.page-body {
+  padding: 0;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .page-sticky-header {
+    padding: 0.85rem 1rem 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  .page-body {
+    padding: 0.5rem;
+  }
+  .page-title {
+    font-size: 1.2rem;
+  }
+  .page-header-actions {
+    flex-wrap: wrap;
+  }
+}

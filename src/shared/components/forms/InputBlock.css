@@ -1,0 +1,87 @@
+.input-block {
+  width: 100%;
+  margin-bottom: 0.85rem;
+  position: relative;
+}
+
+.input-block.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-block.vertical label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.45rem;
+  color: var(--text-primary, #1e293b);
+}
+
+.input-block.horizontal {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.input-block.horizontal label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-primary, #1e293b);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.error-message-wrapper {
+  margin-top: 0.3rem;
+}
+
+.error-message-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.required {
+  color: #dc2626;
+  margin-left: 0.25rem;
+  font-weight: 700;
+}
+
+.sub-label {
+  display: block;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-top: 0.15rem;
+  margin-bottom: 0.2rem;
+}
+
+.dark-theme .sub-label {
+  color: #94a3b8;
+}
+
+.label-text {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #1e293b;
+}
+
+.dark-theme .label-text {
+  color: #f1ede7;
+}

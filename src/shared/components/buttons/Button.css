@@ -1,0 +1,124 @@
+.p-button {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--ripple-color);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Button Variants */
+.button-variant-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.button-variant-primary:hover {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+  box-shadow: 0 4px 12px rgba(74, 55, 40, 0.25);
+}
+
+.button-variant-success {
+  background-color: var(--accent-green) !important;
+  border-color: var(--accent-green) !important;
+  color: #ffffff !important;
+}
+
+.button-variant-success:hover {
+  background-color: #23482f !important;
+  border-color: #23482f !important;
+}
+
+.button-variant-danger {
+  background-color: transparent !important;
+  border: 1px solid var(--danger-color) !important;
+  color: var(--danger-color) !important;
+}
+
+.button-variant-danger:hover {
+  background-color: var(--danger-bg) !important;
+}
+
+.button-variant-warning {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+  color: #ffffff !important;
+}
+
+.button-variant-warning:hover {
+  background-color: var(--secondary-hover) !important;
+}
+
+.button-variant-info {
+  background-color: var(--info-color) !important;
+  border-color: var(--info-color) !important;
+  color: #ffffff !important;
+}
+
+.button-variant-outlined {
+  background-color: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.button-variant-outlined:hover {
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  background-color: rgba(74, 55, 40, 0.04) !important;
+}
+
+.button-variant-text {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--primary-color) !important;
+  padding: 0.25rem 0.5rem;
+}
+
+.button-variant-text:hover {
+  background-color: rgba(74, 55, 40, 0.06) !important;
+}
+
+/* Button Sizes */
+.button-size-small {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.825rem;
+}
+
+.button-size-medium {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.button-size-large {
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+}
+
+.button-disabled {
+  opacity: 0.55;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}

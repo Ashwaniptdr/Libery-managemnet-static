@@ -1,0 +1,310 @@
+/* ==========================================================================
+   MODERN SLEEK DATA TABLE (1:1 Match with Clean Government Portal Grid)
+   ========================================================================== */
+
+/* Main Table Container */
+.p-datatable {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  overflow: hidden !important;
+}
+
+.p-datatable .p-datatable-wrapper {
+  overflow-x: auto;
+}
+
+.p-datatable .p-datatable-header {
+  background: #ffffff !important;
+  border: none !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  padding: 12px 18px !important;
+}
+
+/* ── Modern Table Header (Light slate, small uppercase, bold) ── */
+.p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc !important;
+  color: #64748b !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border: none !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 12px 16px !important;
+  white-space: nowrap !important;
+  transition: background-color 0.15s ease;
+}
+
+.p-datatable .p-datatable-thead > tr > th:hover {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th .p-column-title {
+  font-weight: 700 !important;
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #94a3b8 !important;
+  font-size: 0.72rem !important;
+  margin-left: 0.35rem;
+}
+
+.p-datatable .p-sortable-column.p-highlight .p-sortable-column-icon {
+  color: var(--primary-color) !important;
+}
+
+/* ── Modern Table Body Rows & Cells (NO VERTICAL BORDERS) ── */
+.p-datatable .p-datatable-tbody > tr {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: none !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #f8fafc !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:last-child {
+  border-bottom: none !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border: none !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  padding: 13px 16px !important;
+  font-size: 0.84rem !important;
+  color: #334155 !important;
+  vertical-align: middle !important;
+}
+
+/* Subtle Zebra Striping */
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #fcfdfd !important;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even):hover,
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* ── Action Buttons inside Grid ── */
+.grid-action-btn-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.grid-action-btn-edit:hover {
+  background: #dbeafe !important;
+}
+
+.grid-action-btn-delete {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  background: #fff1f2 !important;
+  color: #be123c !important;
+  border: 1px solid #fecdd3 !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.grid-action-btn-delete:hover {
+  background: #ffe4e6 !important;
+}
+
+/* ── Modern Paginator ── */
+.p-datatable .p-paginator,
+.p-paginator {
+  background-color: #ffffff !important;
+  border: none !important;
+  border-top: 1px solid #e2e8f0 !important;
+  padding: 12px 20px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+
+/* Fix full-width dropdown bug: Make Rows Per Page dropdown compact & neat */
+.p-datatable .p-paginator .p-dropdown,
+.p-paginator .p-dropdown {
+  width: auto !important;
+  min-width: 68px !important;
+  max-width: 85px !important;
+  height: 34px !important;
+  border-radius: 6px !important;
+  border: 1px solid #cbd5e1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 0 0 auto !important;
+  background: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  order: 3;
+}
+
+.p-datatable .p-paginator .p-dropdown:hover,
+.p-paginator .p-dropdown:hover {
+  border-color: #94a3b8 !important;
+}
+
+.p-datatable .p-paginator .p-dropdown .p-dropdown-label,
+.p-paginator .p-dropdown .p-dropdown-label {
+  padding: 0.25rem 0.6rem !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+}
+
+.p-datatable .p-paginator .p-dropdown .p-dropdown-trigger,
+.p-paginator .p-dropdown .p-dropdown-trigger {
+  width: 24px !important;
+  color: #64748b !important;
+}
+
+/* Current Page Report Text (Left aligned) */
+.p-datatable .p-paginator .p-paginator-current,
+.p-paginator .p-paginator-current {
+  font-size: 0.82rem !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  order: 1;
+}
+
+/* Navigation Buttons Container (Centered or intermediate) */
+.p-datatable .p-paginator .p-paginator-pages,
+.p-paginator .p-paginator-pages {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin: 0 4px !important;
+  padding: 0 !important;
+}
+
+.p-datatable .p-paginator .p-paginator-pages .p-paginator-page {
+  border-radius: 6px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  border: 1px solid transparent !important;
+  color: #475569 !important;
+  transition: all 0.15s ease;
+  margin: 0 2px !important;
+}
+
+.p-datatable .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.p-datatable .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: var(--primary-color, #1e293b) !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.p-datatable .p-paginator .p-paginator-first,
+.p-datatable .p-paginator .p-paginator-prev,
+.p-datatable .p-paginator .p-paginator-next,
+.p-datatable .p-paginator .p-paginator-last {
+  border-radius: 6px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  color: #64748b !important;
+  border: 1px solid #e2e8f0 !important;
+  margin: 0 2px !important;
+  transition: all 0.15s ease;
+}
+
+.p-datatable .p-paginator .p-paginator-first:hover,
+.p-datatable .p-paginator .p-paginator-prev:hover,
+.p-datatable .p-paginator .p-paginator-next:hover,
+.p-datatable .p-paginator .p-paginator-last:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.p-datatable .p-paginator-element:disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+
+/* ── Dark Theme Support ── */
+.dark-theme .p-datatable {
+  background: #111827 !important;
+  border-color: #1f2937 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark-theme .p-datatable .p-datatable-header {
+  background: #111827 !important;
+  border-bottom-color: #1f2937 !important;
+}
+
+.dark-theme .p-datatable .p-datatable-thead > tr > th {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+  border-bottom-color: #334155 !important;
+}
+
+.dark-theme .p-datatable .p-datatable-thead > tr > th:hover {
+  background: #24344d !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-theme .p-datatable .p-datatable-tbody > tr {
+  background: #111827 !important;
+  color: #f1f5f9 !important;
+  border-bottom-color: #1f2937 !important;
+}
+
+.dark-theme .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #1e293b !important;
+}
+
+.dark-theme .p-datatable .p-datatable-tbody > tr > td {
+  border: none !important;
+  border-bottom: 1px solid #1f2937 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-theme .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #0f172a !important;
+}
+
+.dark-theme .p-datatable .p-paginator {
+  background-color: #111827 !important;
+  border-top-color: #1f2937 !important;
+}
+
+.dark-theme .p-datatable .p-paginator .p-paginator-pages .p-paginator-page {
+  color: #94a3b8 !important;
+}
+
+.dark-theme .p-datatable .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background: #1e293b !important;
+}

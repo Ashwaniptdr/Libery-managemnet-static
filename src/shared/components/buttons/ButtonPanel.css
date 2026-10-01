@@ -1,0 +1,21 @@
+.button-panel {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1.25rem 0 0.5rem 0;
+  flex-wrap: wrap;
+}
+
+.button-panel.end {
+  justify-content: flex-end;
+}
+
+.button-panel.center {
+  justify-content: center;
+}
+
+.button-panel .p-button {
+  width: auto !important;
+}
