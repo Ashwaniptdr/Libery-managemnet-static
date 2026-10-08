@@ -63,16 +63,37 @@
   color: var(--text-primary);
 }
 
-/* Form controls inside card: clean, crisp, premium borders */
-.card input,
+/* Form controls inside card: clean, crisp, uniform 38px height */
+.card input:not([type="checkbox"]):not([type="radio"]),
 .card select,
-.card .p-inputtext:not(.p-dropdown-label),
+.card .p-inputtext:not(.p-dropdown-label):not(textarea),
+.card .p-dropdown,
+.card .p-calendar,
+.card .p-calendar input {
+  height: 38px !important;
+  min-height: 38px !important;
+  font-size: 0.85rem !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.card input:not([type="checkbox"]):not([type="radio"]),
+.card select,
+.card .p-inputtext:not(.p-dropdown-label):not(textarea) {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  padding: 0.45rem 0.75rem !important;
+  color: #1e293b !important;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
 .card .p-dropdown {
   background-color: #ffffff !important;
   border: 1.5px solid #cbd5e1 !important;
-  border-radius: 10px;
-  padding: 0.62rem 0.95rem;
-  font-size: 0.88rem;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
   color: #1e293b !important;
   transition: all 0.2s ease;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
@@ -88,6 +109,12 @@
   outline: none !important;
   box-shadow: none !important;
   background: transparent !important;
+  padding: 0 0.75rem !important;
+  line-height: 36px !important;
+  height: 36px !important;
+  font-size: 0.85rem !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .p-dropdown .p-dropdown-trigger,
@@ -96,6 +123,33 @@
   border-left: none !important;
   background: transparent !important;
   box-shadow: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Calendar within card */
+.card .p-calendar {
+  width: 100% !important;
+  display: flex !important;
+}
+
+.card .p-calendar .p-inputtext {
+  flex: 1 1 auto !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.card .p-calendar .p-datepicker-trigger {
+  height: 38px !important;
+  width: 38px !important;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .card input:hover,

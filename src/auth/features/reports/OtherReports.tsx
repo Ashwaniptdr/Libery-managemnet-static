@@ -29,6 +29,7 @@ export default function OtherReports() {
   const [year, setYear] = useState<number | null>(new Date().getFullYear());
   const [numberOfCopies, setNumberOfCopies] = useState<number | null>(5);
   const [categoryType, setCategoryType] = useState<Library.BookCategoryType>('MOTIVATIONAL');
+  const [subCategory, setSubCategory] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -77,6 +78,7 @@ export default function OtherReports() {
           ? 'Motivational Books'
           : 'Auto-Biographies & Biographies',
       categoryType,
+      subCategory: subCategory.trim() || undefined,
       isActive: true,
     };
 
@@ -86,6 +88,7 @@ export default function OtherReports() {
     setTitle('');
     setAuthor('');
     setPublication('');
+    setSubCategory('');
   };
 
   const columns: Controls.ColumnProps<Library.BookItem>[] = [
@@ -98,13 +101,20 @@ export default function OtherReports() {
       width: '18%',
       sortable: true,
       cell: item => (
-        <span
-          className={`status-badge ${
-            item.categoryType === 'MOTIVATIONAL' ? 'issued' : 'returned'
-          }`}
-        >
-          {item.categoryType === 'MOTIVATIONAL' ? 'Motivational' : 'Auto-Biography'}
-        </span>
+        <div>
+          <span
+            className={`status-badge ${
+              item.categoryType === 'MOTIVATIONAL' ? 'issued' : 'returned'
+            }`}
+          >
+            {item.categoryType === 'MOTIVATIONAL' ? 'Motivational' : 'Auto-Biography'}
+          </span>
+          {item.subCategory && (
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary, #64748b)', marginTop: '3px', fontWeight: 500 }}>
+              📌 {item.subCategory}
+            </div>
+          )}
+        </div>
       ),
     },
     { field: 'year', header: 'Year', width: '12%', sortable: true },
@@ -199,6 +209,14 @@ export default function OtherReports() {
                 min={1}
                 errorMessage={errors.numberOfCopies}
                 required
+              />
+
+              <TextBox
+                name="subCategory"
+                label="Sub-Category (Optional)"
+                value={subCategory}
+                onChange={val => setSubCategory(val)}
+                placeholder="e.g. Leadership, Civil Service, Science & Innovation"
               />
             </InputPanel>
 

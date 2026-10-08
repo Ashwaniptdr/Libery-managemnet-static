@@ -6,6 +6,7 @@ interface CardProps {
   note?: string;
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   onClose?: () => void;
   headerAction?: React.ReactNode;
 }
@@ -15,11 +16,12 @@ export default function Card({
   note,
   children,
   className = '',
+  style,
   onClose,
   headerAction,
 }: CardProps) {
   return (
-    <div className={`card ${className}`.trim()}>
+    <div className={`card ${className}`.trim()} style={style}>
       {(title || note || onClose || headerAction) && (
         <div className="card-header">
           <div>

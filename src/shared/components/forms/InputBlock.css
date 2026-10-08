@@ -1,7 +1,12 @@
 .input-block {
   width: 100%;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
   position: relative;
+  box-sizing: border-box;
+}
+
+.input-panel .input-block {
+  margin-bottom: 0 !important;
 }
 
 .input-block.vertical {
@@ -12,7 +17,7 @@
 .input-block.vertical label {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.25rem;
   color: var(--text-primary, #1e293b);
 }
 
@@ -22,12 +27,12 @@
   gap: 0.75rem;
   align-items: center;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.65rem;
 }
 
 .input-block.horizontal label {
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   color: var(--text-primary, #1e293b);
   margin: 0;
   display: flex;
@@ -42,7 +47,7 @@
 }
 
 .error-message-wrapper {
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
 
 .error-message-text {
@@ -63,11 +68,11 @@
 .sub-label {
   display: block;
   color: #64748b;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  line-height: 1.35;
-  margin-top: 0.15rem;
-  margin-bottom: 0.2rem;
+  line-height: 1.3;
+  margin-top: 0.1rem;
+  margin-bottom: 0.15rem;
 }
 
 .dark-theme .sub-label {
@@ -78,8 +83,12 @@
   display: inline-flex;
   align-items: center;
   font-weight: 600;
-  font-size: 0.88rem;
-  color: #1e293b;
+  font-size: 0.82rem;
+  color: var(--text-primary, #1e293b);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dark-theme .label-text {

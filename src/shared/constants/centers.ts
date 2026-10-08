@@ -27,7 +27,7 @@ export const CENTERS: Library.CenterItem[] = [
     centerId: 4,
     name: 'Centre for Knowledge Management (CKM)',
     code: 'CKM',
-    advisorName: 'Smt. Neeta Verma',
+    advisorName: 'Smt. Neeta Sharma',
     location: 'Library Wing, 1st Floor',
     isActive: true,
   },

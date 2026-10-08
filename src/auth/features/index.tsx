@@ -5,6 +5,7 @@ import Dashboard from './dashboard';
 import Home from './home/Home';
 import Reports from './reports';
 import Borrow from './borrow';
+import Masters from './masters';
 
 export default function Features() {
   return (
@@ -15,6 +16,7 @@ export default function Features() {
       <Route path="reports/*" element={<Reports />} />
       <Route path="borrow/*" element={<Borrow />} />
       <Route path="audit/*" element={<Audit />} />
+      <Route path="masters/*" element={<Masters />} />
     </Routes>
   );
 }

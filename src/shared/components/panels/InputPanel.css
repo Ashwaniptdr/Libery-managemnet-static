@@ -1,32 +1,91 @@
+/* ─── Shared InputPanel Component Styles ─── */
 .input-panel {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  margin: 1rem 0;
   width: 100%;
-  border: 1px solid var(--border-color);
+  margin: 0 0 0.85rem 0;
+  box-sizing: border-box;
+}
+
+/* Inside card or modern form layouts: seamlessly blend in without clumsy nested borders/backgrounds */
+.card .input-panel,
+.input-panel {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .input-panel.horizontal {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  gap: 0.65rem 1rem;
+  align-items: start;
+  width: 100%;
+}
+
+.input-panel.horizontal.cols-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.input-panel.horizontal.cols-1 > * {
+  max-width: 520px;
+}
+
+.input-panel.horizontal.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.input-panel.horizontal.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.input-panel.horizontal.cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .input-panel.vertical {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.65rem;
+}
+
+/* Ensure all child wrappers in horizontal grid are zero-margin and fill columns cleanly */
+.input-panel.horizontal > * {
+  min-width: 0;
+}
+
+.input-panel .input-block {
+  margin-bottom: 0 !important;
+  width: 100%;
+}
+
+/* Utility column spanning */
+.input-panel .span-2 {
+  grid-column: span 2;
+}
+
+.input-panel .span-3 {
+  grid-column: span 3;
+}
+
+.input-panel .span-4 {
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 1024px) {
-  .input-panel.horizontal {
-    grid-template-columns: repeat(2, 1fr);
+  .input-panel.horizontal.cols-3,
+  .input-panel.horizontal.cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .input-panel.horizontal {
+  .input-panel.horizontal.cols-2,
+  .input-panel.horizontal.cols-3,
+  .input-panel.horizontal.cols-4 {
     grid-template-columns: 1fr;
+  }
+  .input-panel .span-2,
+  .input-panel .span-3 {
+    grid-column: span 1;
   }
 }

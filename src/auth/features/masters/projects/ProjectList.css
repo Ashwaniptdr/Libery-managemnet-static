@@ -1,0 +1,88 @@
+/* ─── ProjectList.css ─── */
+
+.proj-success-banner {
+  background-color: var(--success-bg);
+  color: var(--success-color);
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.proj-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.proj-filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.proj-status-filter {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.proj-filter-btn {
+  padding: 0.35rem 0.85rem;
+  border: 1.5px solid var(--library-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.proj-filter-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: rgba(74, 55, 40, 0.05);
+}
+
+.proj-filter-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Status badges */
+.proj-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.proj-status-badge.ongoing {
+  background-color: rgba(46, 93, 60, 0.12);
+  color: var(--accent-color);
+}
+.proj-status-badge.completed {
+  background-color: rgba(74, 55, 40, 0.1);
+  color: var(--primary-color);
+}
+.proj-status-badge.suspended {
+  background-color: rgba(200, 100, 0, 0.1);
+  color: #b05000;
+}
+.proj-status-badge.proposed {
+  background-color: rgba(139, 105, 20, 0.1);
+  color: var(--secondary-color);
+}
