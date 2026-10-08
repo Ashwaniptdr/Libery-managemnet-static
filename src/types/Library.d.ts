@@ -15,7 +15,9 @@ declare namespace Library {
     | 'MOTIVATIONAL'
     | 'AUTOBIOGRAPHY'
     | 'AIGGPA_REPORT'
-    | 'GENERAL_REPORT';
+    | 'GENERAL_REPORT'
+    | 'NEWSPAPER'
+    | 'MAGAZINE';
 
   interface BookCategory {
     name: string;
@@ -25,10 +27,13 @@ declare namespace Library {
   }
   type BookCategoryItem = Data.WithId<BookCategory, 'categoryId'>;
 
-  // ─── BOOKS ───
+  // ─── BOOKS & CENTER BOOKS ───
   interface Book {
     title: string;
+    subTitle?: string;            // Book Sub title
     author: string;
+    authors?: string[];           // Multiple authors for Center books
+    edition?: string;             // Edition
     publication: string;
     year: number;
     numberOfCopies: number;
@@ -43,13 +48,27 @@ declare namespace Library {
     isbn?: string;
     shelfLocation?: string;
     documentUrl?: string;
+    subCategory?: string;
+
+    // General Report specific fields
+    generalCategory?: string;     // Agriculture, Finance, Technical, Research, Medical, Other
+    generalSubCategory?: string;  // Sub Category text field
+
+    // Transaction fields for Periodicals/Newspapers/Magazines
+    receivedBy?: string;
+    receiveDate?: string;
+    subjectTopic?: string;
+
     isActive: boolean;
   }
   type BookItem = Data.WithId<Book, 'bookId'>;
 
   interface BookForm {
     title: string;
+    subTitle?: string;
     author: string;
+    authors?: string[];
+    edition?: string;
     publication: string;
     year: number | null;
     numberOfCopies: number | null;
@@ -59,6 +78,16 @@ declare namespace Library {
     department?: string;
     isbn?: string;
     shelfLocation?: string;
+    subCategory?: string;
+
+    // General Reports
+    generalCategory?: string;
+    generalSubCategory?: string;
+
+    // Periodicals transaction
+    receivedBy?: string;
+    receiveDate?: string;
+    subjectTopic?: string;
   }
 
   // ─── AIGGPA REPORTS ───
@@ -67,6 +96,7 @@ declare namespace Library {
     centerName: string;
     advisor: string;
     projectName: string;
+    projectId?: number | null;
     year: number;
     numberOfCopies: number;
     availableCopies: number;
@@ -78,6 +108,7 @@ declare namespace Library {
   interface AiggpaReportForm {
     centerId: number | null;
     advisor: string;
+    projectId: number | null;
     projectName: string;
     year: number | null;
     numberOfCopies: number | null;
@@ -85,6 +116,14 @@ declare namespace Library {
   }
 
   // ─── GENERAL REPORTS ───
+  type GeneralReportCategory =
+    | 'Agriculture'
+    | 'Finance'
+    | 'Technical'
+    | 'Research'
+    | 'Medical'
+    | 'Other';
+
   interface GeneralReport {
     title: string;
     year: number;
@@ -92,6 +131,10 @@ declare namespace Library {
     availableCopies: number;
     author?: string;
     publisher?: string;
+    category?: GeneralReportCategory | string; // Category dropdown
+    subCategory?: string;                      // Sub Category text field
+    generalCategory?: string;
+    generalSubCategory?: string;
     isActive: boolean;
   }
   type GeneralReportItem = Data.WithId<GeneralReport, 'reportId'>;
@@ -102,6 +145,10 @@ declare namespace Library {
     numberOfCopies: number | null;
     author?: string;
     publisher?: string;
+    category?: GeneralReportCategory | string;
+    subCategory?: string;
+    generalCategory?: string;
+    generalSubCategory?: string;
   }
 
   // ─── BORROWING / ISSUANCE ───
@@ -113,9 +160,11 @@ declare namespace Library {
     borrowerName: string;
     centerOrSection: string;
     designation: string;
-    issueDate: string; // ISO date string YYYY-MM-DD
-    dueDate: string;   // 30 days limit from issueDate
-    returnDate?: string | null;
+    issueDate: string;        // ISO date string YYYY-MM-DD
+    dueDate: string;          // 30 days or designation duration limit
+    returnDate?: string | null; // Date of return
+    specialPermission?: boolean; // Special permission checkbox
+    permissionGivenBy?: string;  // Who gave the permission
     status: BorrowStatus;
     reissueCount: number;
     notes?: string;
@@ -128,6 +177,9 @@ declare namespace Library {
     centerOrSection: string;
     designation: string;
     issueDate: Date | null;
+    returnDate?: Date | null;
+    specialPermission?: boolean;
+    permissionGivenBy?: string;
     notes?: string;
   }
 
@@ -178,5 +230,116 @@ declare namespace Library {
     }[];
     recentBorrows: BorrowItem[];
     overdueBorrows: BorrowItem[];
+  }
+
+  // ─── NEWSPAPER & MAGAZINE MASTER ───
+  type PublicationType = 'NEWSPAPER' | 'MAGAZINE';
+
+  type PeriodicalFrequency =
+    | 'Daily'
+    | 'Weekly'
+    | 'Bi-Weekly'
+    | 'Monthly'
+    | 'Fortnightly'
+    | 'Quarterly'
+    | 'Half Yearly'
+    | 'Annually';
+
+  interface Newspaper {
+    name: string;
+    publicationType: PublicationType;
+    publisher: string;
+    vendor?: string;                     // Vendor
+    language?: string;
+    frequency?: PeriodicalFrequency | string; // Frequency
+    subscriptionFrom: string;            // ISO date YYYY-MM-DD
+    subscriptionTo: string;              // ISO date YYYY-MM-DD
+    subscriptionAmount?: number;         // Subscription amount
+    financialYear?: string;              // e.g. 2026-27
+    isActive: boolean;
+    notes?: string;
+  }
+  type NewspaperItem = Data.WithId<Newspaper, 'newspaperId'>;
+
+  interface NewspaperForm {
+    name: string;
+    publicationType: PublicationType;
+    publisher: string;
+    vendor?: string;
+    language?: string;
+    frequency?: string;
+    subscriptionFrom: Date | null;
+    subscriptionTo: Date | null;
+    subscriptionAmount?: number | null;
+    financialYear?: string;
+    notes?: string;
+  }
+
+  // ─── PROJECT MASTER (for AIGGPA Reports dropdown) ───
+  type ProjectStatus = 'ONGOING' | 'COMPLETED' | 'SUSPENDED' | 'PROPOSED';
+
+  interface Project {
+    projectName: string;
+    centerId: number;
+    centerName: string;
+    advisor: string;
+    startYear: number;
+    endYear?: number | null;
+    status: ProjectStatus;
+    description?: string;
+    isActive: boolean;
+  }
+  type ProjectItem = Data.WithId<Project, 'projectId'>;
+
+  interface ProjectForm {
+    projectName: string;
+    centerId: number | null;
+    advisor: string;
+    startYear: number | null;
+    endYear?: number | null;
+    status: ProjectStatus;
+    description?: string;
+  }
+
+  // ─── DESIGNATION WISE BORROWING DURATION MASTER ───
+  interface DesignationBorrowRule {
+    ruleId: number;
+    designation: string;
+    maxBooksAllowed?: number;
+    maxBooks?: number;
+    borrowingDurationDays?: number;
+    durationDays?: number;
+    gracePeriodDays: number;
+    penaltyPerDay?: number;
+    finePerDay?: number;
+    description?: string;
+    isActive: boolean;
+  }
+  type DesignationBorrowRuleItem = DesignationBorrowRule;
+
+  interface DesignationBorrowRuleForm {
+    designation: string;
+    maxBooksAllowed: number | null;
+    borrowingDurationDays: number | null;
+    gracePeriodDays: number | null;
+    penaltyPerDay: number | null;
+    description?: string;
+  }
+
+  // ─── BORROWER CREDIT SCORE & EXTENDED PROFILE ───
+  interface BorrowerCreditScore {
+    borrowerName: string;
+    designation?: string;
+    centerOrSection?: string;
+    joiningDate?: string;          // Joining Date
+    contractEndDate?: string;      // Contract End Date
+    totalBorrows: number;          // No of Books issued until now
+    currentlyHeld: number;         // No of Books currently borrowed
+    overdueCount: number;          // No of Books which have crossed return date
+    returnedOnTime: number;
+    reissueCount: number;
+    creditScore: number;           // 0-100
+    creditGrade: 'EXCELLENT' | 'GOOD' | 'FAIR' | 'POOR';
+    recentBorrows: BorrowItem[];
   }
 }

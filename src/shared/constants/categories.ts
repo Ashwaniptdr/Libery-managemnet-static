@@ -34,4 +34,11 @@ export const BOOK_CATEGORIES: Library.BookCategoryItem[] = [
     description: 'Biographies of statesmen, scholars, visionaries and leaders',
     isActive: true,
   },
+  {
+    categoryId: 6,
+    name: 'Newspapers & Magazines (Periodicals)',
+    code: 'NEWSPAPER',
+    description: 'Daily newspapers and periodicals with active subscription tracking',
+    isActive: true,
+  },
 ];

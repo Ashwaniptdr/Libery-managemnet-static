@@ -14,7 +14,7 @@ function mapColumns<T>(columns: Controls.ColumnProps<T>[]) {
       return (
         <Column
           key={String(column.field ?? index)}
-          body={column.cell}
+          body={column.cell ?? column.body}
           field={column.field as string}
           header={column.header}
           style={{ width: column.width }}

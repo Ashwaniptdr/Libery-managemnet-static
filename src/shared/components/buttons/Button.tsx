@@ -17,6 +17,7 @@ interface ButtonProps {
   type?: ButtonType;
   icon?: string;
   label?: string;
+  title?: string;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   isLoading?: boolean;
   className?: string;
@@ -31,6 +32,7 @@ const CLASS_BASE = 'p-button p-component';
 export default function Button({
   label,
   icon,
+  title,
   onClick,
   isLoading,
   className,
@@ -93,6 +95,7 @@ export default function Button({
       label={label}
       loading={isLoading}
       disabled={disabled}
+      title={title}
     />
   );
 }

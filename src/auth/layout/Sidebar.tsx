@@ -126,6 +126,52 @@ export default function Sidebar({
           </li>
         </ul>
 
+        <div className="sidebar-section-title">Masters</div>
+
+        <ul className="sidebar-menu">
+          {/* Newspapers & Magazines Master */}
+          <li className="sidebar-menu-item">
+            <NavLink
+              to="/masters/newspapers"
+              className={({ isActive }) =>
+                `sidebar-link ${isActive ? 'active' : ''}`
+              }
+              onClick={handleLinkClick}
+            >
+              <i className="pi pi-calendar" />
+              <span>Newspapers &amp; Mags</span>
+            </NavLink>
+          </li>
+
+          {/* Designation Borrowing Duration Master */}
+          <li className="sidebar-menu-item">
+            <NavLink
+              to="/masters/borrowing-rules"
+              className={({ isActive }) =>
+                `sidebar-link ${isActive ? 'active' : ''}`
+              }
+              onClick={handleLinkClick}
+            >
+              <i className="pi pi-clock" />
+              <span>Borrowing Durations</span>
+            </NavLink>
+          </li>
+
+          {/* Projects Master */}
+          <li className="sidebar-menu-item">
+            <NavLink
+              to="/masters/projects"
+              className={({ isActive }) =>
+                `sidebar-link ${isActive ? 'active' : ''}`
+              }
+              onClick={handleLinkClick}
+            >
+              <i className="pi pi-folder" />
+              <span>Projects Master</span>
+            </NavLink>
+          </li>
+        </ul>
+
         {/* Footer */}
         <div className="sidebar-footer">
           <div className="sidebar-footer-title">AIGGPA Bhopal &copy; 2026</div>

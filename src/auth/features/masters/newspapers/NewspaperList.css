@@ -1,0 +1,212 @@
+/* ─── NewspaperList.css ─── */
+
+.np-success-banner {
+  background-color: var(--success-bg);
+  color: var(--success-color);
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.np-expiry-warning {
+  background: linear-gradient(135deg, rgba(235, 144, 16, 0.12) 0%, rgba(74, 55, 40, 0.06) 100%);
+  border-left: 4px solid var(--secondary-color);
+  color: var(--primary-color);
+  padding: 0.875rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.np-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.np-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.np-type-radio {
+  margin-bottom: 1rem;
+}
+
+/* Type badges */
+.np-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.np-type-badge.newspaper {
+  background-color: rgba(74, 55, 40, 0.1);
+  color: var(--primary-color);
+}
+.np-type-badge.magazine {
+  background-color: rgba(46, 93, 60, 0.1);
+  color: var(--accent-color);
+}
+
+/* Status badges */
+.np-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.np-status-badge.active {
+  background-color: rgba(46, 93, 60, 0.12);
+  color: var(--accent-color);
+}
+.np-status-badge.expiring_soon {
+  background-color: rgba(235, 144, 16, 0.12);
+  color: #b07800;
+}
+.np-status-badge.expired {
+  background-color: rgba(200, 50, 50, 0.1);
+  color: #c03030;
+}
+
+/* ─── Compact Master Form Styles (Zero-Scroll at 100% Zoom) ─── */
+.np-form-card {
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.np-master-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.np-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem 1rem;
+}
+
+.np-form-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.np-form-field.span-2 {
+  grid-column: span 2;
+}
+
+/* Eliminate large default margins on input blocks */
+.np-form-field .input-block {
+  margin-bottom: 0 !important;
+  width: 100%;
+}
+
+.np-form-field .input-block label {
+  margin-bottom: 0.25rem !important;
+}
+
+.np-form-field .label-text {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary, #1e293b) !important;
+  line-height: 1.25 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fixed uniform height (38px) across all control types */
+.np-form-field .p-inputtext,
+.np-form-field .p-dropdown,
+.np-form-field .p-calendar,
+.np-form-field .p-calendar input {
+  height: 38px !important;
+  min-height: 38px !important;
+  font-size: 0.85rem !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.np-form-field .p-dropdown {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.np-form-field .p-dropdown .p-dropdown-label {
+  padding: 0 0.75rem !important;
+  line-height: 36px !important;
+  font-size: 0.85rem !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.np-form-field .p-calendar {
+  width: 100% !important;
+  display: flex !important;
+}
+
+.np-form-field .p-calendar .p-inputtext {
+  flex: 1 1 auto !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.np-form-field .p-calendar .p-datepicker-trigger {
+  height: 38px !important;
+  width: 38px !important;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.np-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color, #e2e8f0);
+}
+
+@media (max-width: 1024px) {
+  .np-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .np-form-field.span-2 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .np-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .np-form-field.span-2 {
+    grid-column: span 1;
+  }
+}
+

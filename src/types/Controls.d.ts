@@ -74,9 +74,10 @@ declare global {
     }
 
     interface ColumnProps<T> {
-      field?: keyof T;
+      field?: keyof T | string;
       header?: string | React.ReactNode;
-      cell?: (item: T, option: { rowIndex: number }) => React.ReactElement;
+      cell?: (item: T, option?: { rowIndex: number }) => React.ReactElement | React.ReactNode;
+      body?: (item: T, option?: any) => React.ReactElement | React.ReactNode;
       sortable?: boolean;
       width?: number | string;
       filter?: boolean;

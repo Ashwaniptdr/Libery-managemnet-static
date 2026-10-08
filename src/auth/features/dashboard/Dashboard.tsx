@@ -22,8 +22,10 @@ interface CenterStatData {
 export default function Dashboard() {
   const navigate = useNavigate();
 
-  // Mode Selection: 'BOOKS' | 'REPORTS' | 'OTHER' via Top Radio Buttons
-  const [dashboardMode, setDashboardMode] = useState<'BOOKS' | 'REPORTS' | 'OTHER'>('BOOKS');
+  // Mode Selection: 'BOOKS' | 'REPORTS' | 'OTHER' | 'NEWSPAPERS' via Top Radio Buttons
+  const [dashboardMode, setDashboardMode] = useState<
+    'BOOKS' | 'REPORTS' | 'OTHER' | 'NEWSPAPERS'
+  >('BOOKS');
 
   // Active hover states for charts
   const [hoveredItem, setHoveredItem] = useState<CenterStatData | null>(null);
@@ -66,7 +68,7 @@ export default function Dashboard() {
       centerId: 4,
       code: 'CKM',
       name: 'Centre for Knowledge Management',
-      advisor: 'Smt. Neeta Verma',
+      advisor: 'Smt. Neeta Sharma',
       available: 320,
       inCirculation: 65,
       secondaryCount: 55,
@@ -160,7 +162,7 @@ export default function Dashboard() {
       centerId: 4,
       code: 'CKM',
       name: 'Centre for Knowledge Management',
-      advisor: 'Smt. Neeta Verma',
+      advisor: 'Smt. Neeta Sharma',
       available: 105,
       inCirculation: 16,
       secondaryCount: 14,
@@ -282,14 +284,117 @@ export default function Dashboard() {
     },
   ];
 
+  // 4. Data for NEWSPAPERS & MAGAZINES Mode (Daily Newspapers & Periodical Subscriptions)
+  const newspaperStats: CenterStatData[] = [
+    {
+      centerId: 1,
+      code: 'DB-HIN',
+      name: 'Dainik Bhaskar (Daily Hindi Newspaper)',
+      advisor: 'Bhopal News Agency Pvt Ltd',
+      available: 28,
+      inCirculation: 2,
+      secondaryCount: 0,
+      total: 30,
+    },
+    {
+      centerId: 2,
+      code: 'TH-ENG',
+      name: 'The Hindu (Daily English Newspaper)',
+      advisor: 'Central India News Distributors',
+      available: 29,
+      inCirculation: 1,
+      secondaryCount: 0,
+      total: 30,
+    },
+    {
+      centerId: 3,
+      code: 'HT-ENG',
+      name: 'Hindustan Times (Daily English Newspaper)',
+      advisor: 'National Periodical Supply Co.',
+      available: 27,
+      inCirculation: 3,
+      secondaryCount: 0,
+      total: 30,
+    },
+    {
+      centerId: 7,
+      code: 'NBT-HIN',
+      name: 'Navbharat Times (Daily Hindi - Renewal Due)',
+      advisor: 'Times Group Circulation Division',
+      available: 26,
+      inCirculation: 1,
+      secondaryCount: 3,
+      total: 30,
+    },
+    {
+      centerId: 101,
+      code: 'IND-TOD',
+      name: 'India Today (Weekly News Magazine)',
+      advisor: 'Thomson Press India Distribution',
+      available: 4,
+      inCirculation: 1,
+      secondaryCount: 0,
+      total: 5,
+    },
+    {
+      centerId: 102,
+      code: 'YOJ-MAG',
+      name: 'Yojana (Monthly Socio-Economic Journal)',
+      advisor: 'Government Publications Sales Depot',
+      available: 3,
+      inCirculation: 1,
+      secondaryCount: 0,
+      total: 4,
+    },
+    {
+      centerId: 103,
+      code: 'KUR-MAG',
+      name: 'Kurukshetra (Monthly Rural Development Journal)',
+      advisor: 'Government Publications Sales Depot',
+      available: 3,
+      inCirculation: 1,
+      secondaryCount: 0,
+      total: 4,
+    },
+    {
+      centerId: 105,
+      code: 'DTE-ENV',
+      name: 'Down To Earth (Fortnightly Environment Journal)',
+      advisor: 'CSE Circulation Wing, New Delhi',
+      available: 2,
+      inCirculation: 1,
+      secondaryCount: 0,
+      total: 3,
+    },
+    {
+      centerId: 104,
+      code: 'EPW-WKL',
+      name: 'Economic & Political Weekly (Academic Weekly)',
+      advisor: 'Academic Book & Periodicals Bureau',
+      available: 4,
+      inCirculation: 1,
+      secondaryCount: 0,
+      total: 5,
+    },
+  ];
+
   const currentStats =
     dashboardMode === 'BOOKS'
       ? bookCenterStats
       : dashboardMode === 'REPORTS'
         ? reportCenterStats
-        : otherCenterStats;
+        : dashboardMode === 'OTHER'
+          ? otherCenterStats
+          : newspaperStats;
 
-  const maxScale = dashboardMode === 'BOOKS' ? 800 : dashboardMode === 'REPORTS' ? 400 : 300;
+  const maxScale =
+    dashboardMode === 'BOOKS'
+      ? 800
+      : dashboardMode === 'REPORTS'
+        ? 400
+        : dashboardMode === 'OTHER'
+          ? 300
+          : 35;
 
   // Monthly trend data
   const bookTrendData = [
@@ -328,14 +433,35 @@ export default function Dashboard() {
     { month: 'Sep', value: 155 },
   ];
 
+  const newspaperTrendData = [
+    { month: 'Jan', value: 178 },
+    { month: 'Feb', value: 172 },
+    { month: 'Mar', value: 185 },
+    { month: 'Apr', value: 182 },
+    { month: 'May', value: 190 },
+    { month: 'Jun', value: 184 },
+    { month: 'Jul', value: 188 },
+    { month: 'Aug', value: 192 },
+    { month: 'Sep', value: 186 },
+  ];
+
   const currentTrendData =
     dashboardMode === 'BOOKS'
       ? bookTrendData
       : dashboardMode === 'REPORTS'
         ? reportTrendData
-        : otherTrendData;
+        : dashboardMode === 'OTHER'
+          ? otherTrendData
+          : newspaperTrendData;
 
-  const targetThreshold = dashboardMode === 'BOOKS' ? 500 : dashboardMode === 'REPORTS' ? 150 : 160;
+  const targetThreshold =
+    dashboardMode === 'BOOKS'
+      ? 500
+      : dashboardMode === 'REPORTS'
+        ? 150
+        : dashboardMode === 'OTHER'
+          ? 160
+          : 25;
 
   // Capacity ranking for bottom left
   const capacityRanked = [...currentStats].sort((a, b) => b.total - a.total).slice(0, 5);
@@ -346,7 +472,11 @@ export default function Dashboard() {
   return (
     <Page
       header="Analytics Dashboard"
-      subHeader="Books, Reports & Circulation overview — 9 AIGGPA Centers"
+      subHeader={
+        dashboardMode === 'NEWSPAPERS'
+          ? 'Daily Newspapers & Periodical Magazines subscription and receipt overview'
+          : 'Books, Reports & Circulation overview — 9 AIGGPA Centers'
+      }
       headerActions={
         <>
           <Button
@@ -372,7 +502,7 @@ export default function Dashboard() {
         <div className="dashboard-topbar">
           <div className="topbar-left">
 
-            {/* TOP RADIO BUTTONS: Switch between Books, Reports, and Other */}
+            {/* TOP RADIO BUTTONS: Switch between Books, Reports, Other, and Newspapers */}
             <div className="mode-radio-group">
               <label className={`mode-radio-item ${dashboardMode === 'BOOKS' ? 'selected' : ''}`}>
                 <input
@@ -409,6 +539,18 @@ export default function Dashboard() {
                 <i className="pi pi-bookmark" />
                 <span>Other (Motivational & Bio)</span>
               </label>
+
+              <label className={`mode-radio-item ${dashboardMode === 'NEWSPAPERS' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="dashboardMode"
+                  value="NEWSPAPERS"
+                  checked={dashboardMode === 'NEWSPAPERS'}
+                  onChange={() => setDashboardMode('NEWSPAPERS')}
+                />
+                <i className="pi pi-calendar" />
+                <span>Newspapers & Magazines</span>
+              </label>
             </div>
           </div>
         </div>
@@ -418,12 +560,22 @@ export default function Dashboard() {
           {/* Card 1: Total Book / Report / Other Available */}
           <div
             className="plain-kpi-card clickable"
-            onClick={() => navigate(dashboardMode === 'OTHER' ? '/reports/other' : '/books')}
+            onClick={() => {
+              if (dashboardMode === 'NEWSPAPERS') navigate('/masters/newspapers');
+              else if (dashboardMode === 'OTHER') navigate('/reports/other');
+              else navigate('/books');
+            }}
             title="Click to view all available cataloged volumes"
           >
             <div className="kpi-top-row">
               <div className="kpi-metric">
-                {dashboardMode === 'BOOKS' ? '4,620' : dashboardMode === 'REPORTS' ? '1,120' : '840'}
+                {dashboardMode === 'BOOKS'
+                  ? '4,620'
+                  : dashboardMode === 'REPORTS'
+                    ? '1,120'
+                    : dashboardMode === 'OTHER'
+                      ? '840'
+                      : '9 Active'}
               </div>
               <span className="kpi-click-hint">
                 <i className="pi pi-arrow-up-right" />
@@ -434,29 +586,45 @@ export default function Dashboard() {
                 ? 'Total Book Available'
                 : dashboardMode === 'REPORTS'
                   ? 'Total Reports Available'
-                  : 'Total Other Books Available'}
+                  : dashboardMode === 'OTHER'
+                    ? 'Total Other Books Available'
+                    : 'Active Subscriptions'}
             </div>
             <div className="kpi-sub">
               {dashboardMode === 'BOOKS'
                 ? 'In-stock across 9 Centers (5,000 Total Stock)'
                 : dashboardMode === 'REPORTS'
                   ? 'Center Reports & External Dept. Reports in stock'
-                  : 'Motivational Books & Biographies in library stock'}
+                  : dashboardMode === 'OTHER'
+                    ? 'Motivational Books & Biographies in library stock'
+                    : 'Daily Newspapers (4) & Periodical Magazines (5)'}
             </div>
             <div className="kpi-foot positive">
-              <i className="pi pi-list" /> View Central Catalog List &rarr;
+              <i className="pi pi-list" />{' '}
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'View Periodicals Master →'
+                : 'View Central Catalog List →'}
             </div>
           </div>
 
           {/* Card 2: Book / Report / Other Issues */}
           <div
             className="plain-kpi-card clickable"
-            onClick={() => navigate('/borrow?status=ISSUED')}
+            onClick={() => {
+              if (dashboardMode === 'NEWSPAPERS') navigate('/books/add');
+              else navigate('/borrow?status=ISSUED');
+            }}
             title="Click to view all active issue loan records"
           >
             <div className="kpi-top-row">
               <div className="kpi-metric">
-                {dashboardMode === 'BOOKS' ? '380' : dashboardMode === 'REPORTS' ? '120' : '145'}
+                {dashboardMode === 'BOOKS'
+                  ? '380'
+                  : dashboardMode === 'REPORTS'
+                    ? '120'
+                    : dashboardMode === 'OTHER'
+                      ? '145'
+                      : '186'}
               </div>
               <span className="kpi-click-hint">
                 <i className="pi pi-arrow-up-right" />
@@ -467,45 +635,71 @@ export default function Dashboard() {
                 ? 'Book Issues'
                 : dashboardMode === 'REPORTS'
                   ? 'Reports Issues'
-                  : 'Other Books Issues'}
+                  : dashboardMode === 'OTHER'
+                    ? 'Other Books Issues'
+                    : 'Issues Received (This Month)'}
             </div>
             <div className="kpi-sub">
-              {dashboardMode === 'OTHER'
-                ? 'Currently issued to officers, trainees & researchers'
-                : 'Currently issued across departments & research fellows'}
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'Daily issues verified & logged via Accession Register'
+                : dashboardMode === 'OTHER'
+                  ? 'Currently issued to officers, trainees & researchers'
+                  : 'Currently issued across departments & research fellows'}
             </div>
             <div className="kpi-foot neutral">
-              <i className="pi pi-share-alt" /> View Issued Register List &rarr;
+              <i className={dashboardMode === 'NEWSPAPERS' ? 'pi pi-book' : 'pi pi-share-alt'} />{' '}
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'View Periodical Accession →'
+                : 'View Issued Register List →'}
             </div>
           </div>
 
           {/* Card 3: Within Deadline */}
           <div
             className="plain-kpi-card clickable"
-            onClick={() => navigate('/borrow?status=WITHIN_DEADLINE')}
+            onClick={() => {
+              if (dashboardMode === 'NEWSPAPERS') navigate('/masters/newspapers');
+              else navigate('/borrow?status=WITHIN_DEADLINE');
+            }}
             title="Click to view borrowings within the 30-day regulation limit"
           >
             <div className="kpi-top-row">
               <div className="kpi-metric">
-                {dashboardMode === 'BOOKS' ? '362' : dashboardMode === 'REPORTS' ? '116' : '139'}
+                {dashboardMode === 'BOOKS'
+                  ? '362'
+                  : dashboardMode === 'REPORTS'
+                    ? '116'
+                    : dashboardMode === 'OTHER'
+                      ? '139'
+                      : '98.2%'}
               </div>
               <span className="kpi-click-hint">
                 <i className="pi pi-arrow-up-right" />
               </span>
             </div>
-            <div className="kpi-label">Within Deadline</div>
+            <div className="kpi-label">
+              {dashboardMode === 'NEWSPAPERS' ? 'Delivery Adherence Rate' : 'Within Deadline'}
+            </div>
             <div className="kpi-sub">
-              Loans strictly adhering to standard 30-day borrowing limit
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'On-time delivery fulfillment by registered newspaper agencies'
+                : 'Loans strictly adhering to standard 30-day borrowing limit'}
             </div>
             <div className="kpi-foot positive">
-              <i className="pi pi-check-circle" /> View Compliant Loans List &rarr;
+              <i className="pi pi-check-circle" />{' '}
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'View Vendor Fulfillment →'
+                : 'View Compliant Loans List →'}
             </div>
           </div>
 
           {/* Card 4: Deadline Exceed */}
           <div
             className="plain-kpi-card clickable overdue-kpi"
-            onClick={() => navigate('/borrow?status=OVERDUE')}
+            onClick={() => {
+              if (dashboardMode === 'NEWSPAPERS') navigate('/masters/newspapers');
+              else navigate('/borrow?status=OVERDUE');
+            }}
             title="Click to view borrowings exceeding 30-day deadline"
           >
             <div className="kpi-top-row">
@@ -514,18 +708,27 @@ export default function Dashboard() {
                   ? `${overdueCount > 0 ? overdueCount : 18}`
                   : dashboardMode === 'REPORTS'
                     ? '4'
-                    : '6'}
+                    : dashboardMode === 'OTHER'
+                      ? '6'
+                      : '2'}
               </div>
               <span className="kpi-click-hint danger-text">
                 <i className="pi pi-exclamation-triangle" />
               </span>
             </div>
-            <div className="kpi-label danger-text">Deadline Exceed</div>
+            <div className="kpi-label danger-text">
+              {dashboardMode === 'NEWSPAPERS' ? 'Expiring / Due Renewal' : 'Deadline Exceed'}
+            </div>
             <div className="kpi-sub">
-              Exceeded mandatory 30-day return limit — recall action needed
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'Subscriptions requiring annual renewal in FY 2026-27'
+                : 'Exceeded mandatory 30-day return limit — recall action needed'}
             </div>
             <div className="kpi-foot warning">
-              <i className="pi pi-bell" /> View Overdue Borrowers List &rarr;
+              <i className="pi pi-bell" />{' '}
+              {dashboardMode === 'NEWSPAPERS'
+                ? 'View Expiring Subscriptions →'
+                : 'View Overdue Borrowers List →'}
             </div>
           </div>
         </div>
@@ -539,14 +742,18 @@ export default function Dashboard() {
                   ? 'Library Stock & Resource Distribution by 9 Centers'
                   : dashboardMode === 'REPORTS'
                     ? 'AIGGPA Center Reports (9 Centers Table) & External Dept. Reports'
-                    : 'Other Collections: Motivational & Auto-Biographies Collection'}
+                    : dashboardMode === 'OTHER'
+                      ? 'Other Collections: Motivational & Auto-Biographies Collection'
+                      : 'Newspapers & Periodical Magazines Circulation & Receipt Adherence'}
               </h3>
               <p className="chart-subtitle">
                 {dashboardMode === 'BOOKS'
                   ? 'Center → Subject Specialization → Accession Volumes • click any bar to view list'
                   : dashboardMode === 'REPORTS'
                     ? 'Institutional Projects, Research Monographs & Partner Department Publications'
-                    : 'Leadership, Self-Improvement, Statesmen Biographies & Civil Service Memoirs'}
+                    : dashboardMode === 'OTHER'
+                      ? 'Leadership, Self-Improvement, Statesmen Biographies & Civil Service Memoirs'
+                      : 'Daily Newspapers (Hindi/English) & Periodicals • click any bar to view subscription'}
               </p>
             </div>
             <div className="chart-header-right">
@@ -555,7 +762,9 @@ export default function Dashboard() {
                   ? '9 AIGGPA Centers'
                   : dashboardMode === 'REPORTS'
                     ? '9 Centers + External Depts'
-                    : 'Motivational & Biographies'}
+                    : dashboardMode === 'OTHER'
+                      ? 'Motivational & Biographies'
+                      : '9 Active Periodicals'}
               </span>
             </div>
           </div>
@@ -566,7 +775,9 @@ export default function Dashboard() {
                 ? 'ALL 9 RESEARCH CENTERS'
                 : dashboardMode === 'REPORTS'
                   ? 'CENTERS & EXTERNAL DEPARTMENTS'
-                  : 'SPECIAL COLLECTIONS & MOTIVATIONAL DOMAINS'}
+                  : dashboardMode === 'OTHER'
+                    ? 'SPECIAL COLLECTIONS & MOTIVATIONAL DOMAINS'
+                    : 'PERIODICAL TITLES & ADHERENCE LOG'}
             </span>
             <small>Click a bar to inspect collection</small>
           </div>
@@ -605,7 +816,9 @@ export default function Dashboard() {
                       onMouseEnter={() => setHoveredItem(stat)}
                       onMouseLeave={() => setHoveredItem(null)}
                       onClick={() => {
-                        if (dashboardMode === 'OTHER') {
+                        if (dashboardMode === 'NEWSPAPERS') {
+                          navigate('/masters/newspapers');
+                        } else if (dashboardMode === 'OTHER') {
                           navigate('/reports/other');
                         } else if (stat.code === 'EXT-DEPT') {
                           navigate('/reports/general');
@@ -659,7 +872,9 @@ export default function Dashboard() {
                           ? 'Available Books'
                           : dashboardMode === 'REPORTS'
                             ? 'In-Stock Reports'
-                            : 'Available Volumes'}
+                            : dashboardMode === 'OTHER'
+                              ? 'Available Volumes'
+                              : 'Reading Stand (Available)'}
                       </span>
                       <strong className="row-value">{hoveredItem.available}</strong>
                     </div>
@@ -670,7 +885,9 @@ export default function Dashboard() {
                           ? 'In Circulation'
                           : dashboardMode === 'REPORTS'
                             ? 'In Active Consultation'
-                            : 'In Circulation'}
+                            : dashboardMode === 'OTHER'
+                              ? 'In Circulation'
+                              : 'In Active Reading / Issued'}
                       </span>
                       <strong className="row-value">{hoveredItem.inCirculation}</strong>
                     </div>
@@ -681,13 +898,15 @@ export default function Dashboard() {
                           ? 'Reports & Studies'
                           : dashboardMode === 'REPORTS'
                             ? 'Whitepapers / Briefs'
-                            : 'Special Reference Copies'}
+                            : dashboardMode === 'OTHER'
+                              ? 'Special Reference Copies'
+                              : 'Archival / Reference'}
                       </span>
                       <strong className="row-value">{hoveredItem.secondaryCount}</strong>
                     </div>
                     <div className="tooltip-divider" />
                     <div className="tooltip-row total-row">
-                      <span>Total Volumes</span>
+                      <span>{dashboardMode === 'NEWSPAPERS' ? 'Monthly Issues' : 'Total Volumes'}</span>
                       <strong>{hoveredItem.total}</strong>
                     </div>
                   </div>
@@ -705,7 +924,9 @@ export default function Dashboard() {
                   ? 'Available Books'
                   : dashboardMode === 'REPORTS'
                     ? 'Available Reports'
-                    : 'Available Volumes'}
+                    : dashboardMode === 'OTHER'
+                      ? 'Available Volumes'
+                      : 'Reading Stand (Available)'}
               </span>
             </div>
             <div className="legend-item">
@@ -715,7 +936,9 @@ export default function Dashboard() {
                   ? 'In Circulation'
                   : dashboardMode === 'REPORTS'
                     ? 'In Active Consultation'
-                    : 'In Circulation'}
+                    : dashboardMode === 'OTHER'
+                      ? 'In Circulation'
+                      : 'In Active Reading'}
               </span>
             </div>
             <div className="legend-item">
@@ -725,7 +948,9 @@ export default function Dashboard() {
                   ? 'Reports & Studies'
                   : dashboardMode === 'REPORTS'
                     ? 'Monographs / Briefs'
-                    : 'Special Edition Copies'}
+                    : dashboardMode === 'OTHER'
+                      ? 'Special Edition Copies'
+                      : 'Archival / Past Issues'}
               </span>
             </div>
           </div>
@@ -742,10 +967,14 @@ export default function Dashboard() {
                     ? 'Top Centers Capacity — Volume View'
                     : dashboardMode === 'REPORTS'
                       ? 'Top Centers by Report Output'
-                      : 'Top Special Collections Capacity'}
+                      : dashboardMode === 'OTHER'
+                        ? 'Top Special Collections Capacity'
+                        : 'Top Periodicals by Monthly Volume'}
                 </h4>
                 <p className="card-inner-sub">
-                  Sorted by volume capacity • Target: {targetThreshold} volumes
+                  {dashboardMode === 'NEWSPAPERS'
+                    ? `Sorted by monthly issues received • Target: ${targetThreshold} issues`
+                    : `Sorted by volume capacity • Target: ${targetThreshold} volumes`}
                 </p>
               </div>
               <select
@@ -760,19 +989,22 @@ export default function Dashboard() {
 
             <div style={{ marginTop: '0.75rem', marginBottom: '1.25rem' }}>
               <span className="pill-tag">
-                <i className="pi pi-building" />{' '}
+                <i className={dashboardMode === 'NEWSPAPERS' ? 'pi pi-calendar' : 'pi pi-building'} />{' '}
                 {dashboardMode === 'BOOKS'
                   ? 'All 9 Centers'
                   : dashboardMode === 'REPORTS'
                     ? 'Centers & Departments'
-                    : 'Motivational & Biographies'}
+                    : dashboardMode === 'OTHER'
+                      ? 'Motivational & Biographies'
+                      : 'Newspapers & Magazines'}
               </span>
             </div>
 
             {/* Horizontal Bar List */}
             <div className="horizontal-bars-list">
               {capacityRanked.map(center => {
-                const maxBar = dashboardMode === 'BOOKS' ? 700 : 350;
+                const maxBar =
+                  dashboardMode === 'BOOKS' ? 700 : dashboardMode === 'NEWSPAPERS' ? 35 : 350;
                 const percentage = Math.min(100, Math.round((center.total / maxBar) * 100));
                 return (
                   <div key={center.centerId} className="h-bar-row">
@@ -783,14 +1015,18 @@ export default function Dashboard() {
                         className="target-vertical-line"
                         style={{ left: `${(targetThreshold / maxBar) * 100}%` }}
                       >
-                        <span className="target-badge">{targetThreshold} target</span>
+                        <span className="target-badge">
+                          {targetThreshold} {dashboardMode === 'NEWSPAPERS' ? 'issues' : 'target'}
+                        </span>
                       </div>
                       <div
                         className="h-bar-fill"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <span className="h-bar-val">{center.total} vols</span>
+                    <span className="h-bar-val">
+                      {center.total} {dashboardMode === 'NEWSPAPERS' ? 'issues' : 'vols'}
+                    </span>
                   </div>
                 );
               })}
@@ -806,10 +1042,14 @@ export default function Dashboard() {
                     ? 'Monthly Borrowing & Accession Trend'
                     : dashboardMode === 'REPORTS'
                       ? 'Monthly Reports Intake & Consultation Trend'
-                      : 'Monthly Special Collections Circulation Trend'}
+                      : dashboardMode === 'OTHER'
+                        ? 'Monthly Special Collections Circulation Trend'
+                        : 'Monthly Periodicals Receipt & Delivery Trend'}
                 </h4>
                 <p className="card-inner-sub">
-                  Volumes per month • dashed = monthly target ({dashboardMode === 'BOOKS' ? '450' : dashboardMode === 'REPORTS' ? '120' : '100'})
+                  {dashboardMode === 'NEWSPAPERS'
+                    ? 'Issues delivered per month • dashed = monthly target (180)'
+                    : `Volumes per month • dashed = monthly target (${dashboardMode === 'BOOKS' ? '450' : dashboardMode === 'REPORTS' ? '120' : '100'})`}
                 </p>
               </div>
               <select className="plain-select">
@@ -836,16 +1076,16 @@ export default function Dashboard() {
 
                 {/* Y Axis Labels */}
                 <text x="10" y="35" className="svg-axis-text">
-                  {dashboardMode === 'BOOKS' ? '600' : '200'}
+                  {dashboardMode === 'BOOKS' ? '600' : dashboardMode === 'NEWSPAPERS' ? '240' : '200'}
                 </text>
                 <text x="10" y="85" className="svg-axis-text">
-                  {dashboardMode === 'BOOKS' ? '450' : '150'}
+                  {dashboardMode === 'BOOKS' ? '450' : dashboardMode === 'NEWSPAPERS' ? '180' : '150'}
                 </text>
                 <text x="10" y="135" className="svg-axis-text">
-                  {dashboardMode === 'BOOKS' ? '300' : '100'}
+                  {dashboardMode === 'BOOKS' ? '300' : dashboardMode === 'NEWSPAPERS' ? '120' : '100'}
                 </text>
                 <text x="10" y="185" className="svg-axis-text">
-                  {dashboardMode === 'BOOKS' ? '150' : '50'}
+                  {dashboardMode === 'BOOKS' ? '150' : dashboardMode === 'NEWSPAPERS' ? '60' : '50'}
                 </text>
 
                 {/* Target dashed line */}
@@ -928,7 +1168,8 @@ export default function Dashboard() {
               {/* Tooltip for trend point */}
               {hoveredPoint && (
                 <div className="trend-point-tooltip">
-                  <strong>{hoveredPoint.label} 2026</strong>: {hoveredPoint.value} volumes
+                  <strong>{hoveredPoint.label} 2026</strong>: {hoveredPoint.value}{' '}
+                  {dashboardMode === 'NEWSPAPERS' ? 'issues received' : 'volumes'}
                 </div>
               )}
             </div>

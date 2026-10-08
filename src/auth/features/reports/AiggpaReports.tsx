@@ -9,28 +9,33 @@ import GridPanel from 'shared/components/panels/GridPanel';
 import InputPanel from 'shared/components/panels/InputPanel';
 import Page from 'shared/components/panels/Page';
 import { CENTERS } from 'shared/constants/centers';
-import { STATIC_AIGGPA_REPORTS } from 'shared/constants/staticData';
+import { STATIC_AIGGPA_REPORTS, STATIC_PROJECTS } from 'shared/constants/staticData';
 
 export default function AiggpaReports() {
   const [reports, setReports] = useState<Library.AiggpaReportItem[]>(STATIC_AIGGPA_REPORTS);
   const [showAddForm, setShowAddForm] = useState(false);
 
-  // Form Fields per specification:
-  // - Select Center
-  // - Advisor
-  // - Project Name
+  // Form Fields:
+  // - Select Center (dropdown)
+  // - Advisor (auto-filled from center, editable)
+  // - Select Project (dropdown — filtered by selected center)
   // - Year
+  // - Number of Copies
   const [centerId, setCenterId] = useState<number | null>(1);
   const [advisor, setAdvisor] = useState(CENTERS[0]?.advisorName ?? '');
-  const [projectName, setProjectName] = useState('');
+  const [projectId, setProjectId] = useState<number | null>(null);
   const [year, setYear] = useState<number | null>(new Date().getFullYear());
   const [numberOfCopies, setNumberOfCopies] = useState<number | null>(5);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Handle center selection auto-populating default advisor name
+  // Projects filtered by selected center
+  const centerProjects = STATIC_PROJECTS.filter(p => p.centerId === centerId && p.isActive);
+
+  // Handle center selection — auto-populate advisor, reset project
   const handleCenterChange = (selectedId: number | null) => {
     setCenterId(selectedId);
+    setProjectId(null); // reset project when center changes
     if (selectedId) {
       const center = CENTERS.find(c => c.centerId === selectedId);
       if (center?.advisorName) {
@@ -39,11 +44,22 @@ export default function AiggpaReports() {
     }
   };
 
+  // Handle project selection — auto-populate advisor from project
+  const handleProjectChange = (selectedId: number | null) => {
+    setProjectId(selectedId);
+    if (selectedId) {
+      const project = STATIC_PROJECTS.find(p => p.projectId === selectedId);
+      if (project?.advisor) {
+        setAdvisor(project.advisor);
+      }
+    }
+  };
+
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!centerId) errs.centerId = 'Please select a Center';
     if (!advisor.trim()) errs.advisor = 'Advisor name is required';
-    if (!projectName.trim()) errs.projectName = 'Project name is required';
+    if (!projectId) errs.projectId = 'Please select a Project';
     if (!year || year < 1990 || year > 2099) errs.year = 'Enter a valid year';
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -54,12 +70,15 @@ export default function AiggpaReports() {
     if (!validate()) return;
 
     const center = CENTERS.find(c => c.centerId === centerId);
+    const project = STATIC_PROJECTS.find(p => p.projectId === projectId);
+
     const newReport: Library.AiggpaReportItem = {
       reportId: Date.now(),
       centerId: centerId!,
       centerName: center?.name ?? 'Unknown Center',
       advisor,
-      projectName,
+      projectId: projectId!,
+      projectName: project?.projectName ?? 'Unknown Project',
       year: year!,
       numberOfCopies: numberOfCopies ?? 1,
       availableCopies: numberOfCopies ?? 1,
@@ -67,15 +86,16 @@ export default function AiggpaReports() {
     };
 
     setReports([newReport, ...reports]);
-    setSuccessMessage(`AIGGPA Report for "${projectName}" recorded successfully!`);
+    setSuccessMessage(`AIGGPA Report for "${project?.projectName}" recorded successfully!`);
     setShowAddForm(false);
-    setProjectName('');
+    setProjectId(null);
+    setTimeout(() => setSuccessMessage(''), 4000);
   };
 
   const columns: Controls.ColumnProps<Library.AiggpaReportItem>[] = [
     { field: 'projectName', header: 'Project / Report Name', width: '35%', sortable: true },
-    { field: 'centerName', header: 'Center', width: '30%', sortable: true },
-    { field: 'advisor', header: 'Advisor', width: '20%', sortable: true },
+    { field: 'centerName', header: 'Center', width: '28%', sortable: true },
+    { field: 'advisor', header: 'Advisor', width: '22%', sortable: true },
     { field: 'year', header: 'Year', width: '15%', sortable: true },
   ];
 
@@ -107,6 +127,7 @@ export default function AiggpaReports() {
         >
           <form onSubmit={handleAddReport}>
             <InputPanel orientation="horizontal">
+              {/* Step 1: Select Center */}
               <DropDownList
                 name="centerId"
                 label="Select Center (9 Centers)"
@@ -119,6 +140,20 @@ export default function AiggpaReports() {
                 required
               />
 
+              {/* Step 2: Select Project — filtered by center */}
+              <DropDownList
+                name="projectId"
+                label="Select Project"
+                data={centerProjects}
+                textField="projectName"
+                valueField="projectId"
+                value={projectId}
+                onChange={handleProjectChange}
+                errorMessage={errors.projectId}
+                required
+              />
+
+              {/* Auto-filled Advisor (editable) */}
               <TextBox
                 name="advisor"
                 label="Advisor"
@@ -126,16 +161,6 @@ export default function AiggpaReports() {
                 onChange={val => setAdvisor(val)}
                 placeholder="e.g. Dr. R. K. Sharma"
                 errorMessage={errors.advisor}
-                required
-              />
-
-              <TextBox
-                name="projectName"
-                label="Project Name"
-                value={projectName}
-                onChange={val => setProjectName(val)}
-                placeholder="e.g. CM Helpline Citizen Satisfaction Audit"
-                errorMessage={errors.projectName}
                 required
               />
 
@@ -150,6 +175,28 @@ export default function AiggpaReports() {
                 required
               />
             </InputPanel>
+
+            <InputPanel orientation="horizontal">
+              <NumberBox
+                name="numberOfCopies"
+                label="No. of Copies"
+                value={numberOfCopies}
+                onChange={val => setNumberOfCopies(val)}
+                min={1}
+              />
+            </InputPanel>
+
+            {/* Helper hint when no center selected yet */}
+            {!centerId && (
+              <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0 0 1rem 0' }}>
+                <i className="pi pi-info-circle" /> Select a Center first to see available projects.
+              </p>
+            )}
+            {centerId && centerProjects.length === 0 && (
+              <p style={{ fontSize: '0.82rem', color: 'var(--secondary-color)', margin: '0 0 1rem 0' }}>
+                <i className="pi pi-exclamation-triangle" /> No projects found for this center. Please add a project in Masters → Projects first.
+              </p>
+            )}
 
             <ButtonPanel>
               <Button type="submit" variant="primary" icon="check" label="Save Report" />

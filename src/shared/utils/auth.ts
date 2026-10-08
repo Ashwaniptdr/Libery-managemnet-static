@@ -8,10 +8,10 @@ export interface AuthUser {
 
 export const DEMO_USERS: Record<string, AuthUser> = {
   neeta: {
-    name: 'Neeta Verma',
+    name: 'Neeta Sharma',
     role: 'Section Head - Library & Publications',
-    email: 'neeta.verma@aiggpa.gov.in',
-    avatarText: 'NV',
+    email: 'neeta.sharma@aiggpa.gov.in',
+    avatarText: 'NS',
     center: 'Central Library & Publications Division',
   },
   advisor: {
@@ -42,7 +42,16 @@ export function getCurrentUser(): AuthUser {
   if (typeof window === 'undefined') return DEMO_USERS.neeta;
   try {
     const raw = localStorage.getItem(USER_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const u = JSON.parse(raw);
+      if (u.name === 'Neeta Verma') {
+        u.name = 'Neeta Sharma';
+        u.email = 'neeta.sharma@aiggpa.gov.in';
+        u.avatarText = 'NS';
+        localStorage.setItem(USER_KEY, JSON.stringify(u));
+      }
+      return u;
+    }
   } catch {}
   return DEMO_USERS.neeta;
 }
